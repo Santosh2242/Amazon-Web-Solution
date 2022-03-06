@@ -11,6 +11,11 @@ class sendData extends Controller
    
     public function store(Request $request)
     {
+
+        $fileName = $request->file('img')->getClientOriginalName();  
+        
+        $file_name = $request->file('certificate')->getClientOriginalName();  
+
         $sk=$request->php." ".$request->mysql." ".$request->node_js." ".$request->laravel;
         if($request->pass==$request->cpass){
         $string = DB::table('task')->insert([    
@@ -24,7 +29,9 @@ class sendData extends Controller
             'gender'=>$request->gender,
             'pass'=>$request->pass,
             'role'=>$request->role,
-             'aadharUploads'=>$request->file('img')->store('Uploads')
+             //'aadharUploads'=>$request->file('img')->store('Uploads')
+             'aadharUploads'=> $request->file('img')->move(('uploads'), $fileName),
+             'certificate'=> $request->file('certificate')->move(('uploads'), $file_name)
         
         ]);
         
@@ -32,14 +39,8 @@ class sendData extends Controller
     else{
         return redirect('/registration');
     }
-       return redirect('/list');
-        
+       return redirect('/list');        
     }
-
-
-
-
-
 
     public function show()
     {

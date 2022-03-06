@@ -38,8 +38,8 @@
           <td>{{ $users->aadhar }}</td>
           <td>{{ $users->skills }}</td>
           <td>{{ $users->gender }}</td>
-          <td><img src="{{ asset('storage/uploads/caBYd3gH3yRYW5oFYzCUgbyFEIH9sgpOsVJFKxgj.jpg') }}" alt="not"></td>   
-          <td>No found</td>
+          <td><img src="{{ asset($users->aadharUploads) }}" height="50px" width="40px"></td>   
+          <td><img src="{{ asset($users->certificate) }}" height="50px" width="40px"></td>   
           <td>{{ $users->role }}</td>
           <td><a href='/edit/{{$users->id}}'>Update</a></td>
           <td><a href='/del/{{$users->id}}'>Delete</a></td>
